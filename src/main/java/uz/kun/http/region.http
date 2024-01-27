@@ -1,0 +1,44 @@
+### create article type
+POST http://localhost:8081/region
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+
+{
+  "nameUz": "Toshkent",
+  "nameRu": "Ташкент",
+  "nameEn": "Tashkent",
+  "orderNumber": 1
+}
+
+
+### get by id
+GET http://localhost:8081/region/2
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+
+
+###
+PUT http://localhost:8081/region/1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+
+{
+  "nameUz": "Toshkent",
+  "nameRu": "Ташкент",
+  "nameEn": "Tashkent",
+  "orderNumber": 1
+}
+
+
+### delete by id
+DELETE http://localhost:8081/region/1
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+
+
+### pagination
+GET http://localhost:8081/region/pagination?page=1&size=2
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+
+
+### get by lang
+GET http://localhost:8081/region/byLang?language=ru
+#Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
