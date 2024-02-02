@@ -1,0 +1,9 @@
+### Post
+POST http://localhost:8081/verification/smsCode
+Content-Type: application/json
+
+{
+  "email": "hs@gmail.com",
+  "code": "3361"
+}
+

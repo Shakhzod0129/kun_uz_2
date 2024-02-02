@@ -1,5 +1,6 @@
 package uz.kun.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -9,10 +10,10 @@ import uz.kun.dto.ArticleTypeDTO;
 import uz.kun.dto.JWTDTO;
 import uz.kun.enums.ProfileRole;
 import uz.kun.service.ArticleTypeService;
+import uz.kun.utils.HttpRequestUtil;
 import uz.kun.utils.JWTUtil;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/articleType")
@@ -21,55 +22,40 @@ public class ArticleTypeController {
     @Autowired
     private ArticleTypeService articleTypeService;
 
-    @PostMapping("")
+    @PostMapping("/adm")
     public ResponseEntity<ArticleTypeDTO>  create(@RequestBody ArticleTypeDTO dto,
-                                                  @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                                  HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleTypeService.create(dto));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/adm/{id}")
     public ResponseEntity<ArticleTypeDTO> getById(@PathVariable Integer id,
-                                                  @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                                  HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleTypeService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/adm/{id}")
     public ResponseEntity<Boolean> update(@PathVariable Integer id,
                                           @RequestBody ArticleTypeDTO dto,
-                                          @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                          HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleTypeService.updateById(id,dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/adm/{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable Integer id,
-                                              @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                              HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleTypeService.deleteById(id));
     }
 
-    @GetMapping("/pagination")
+    @GetMapping("/adm/pagination")
     public ResponseEntity<PageImpl<ArticleTypeDTO>> pagination(@RequestParam Integer page,
                                                                @RequestParam Integer size,
-                                                               @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                                               HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(articleTypeService.pagination(page,size));
     }
 

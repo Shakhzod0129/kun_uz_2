@@ -22,6 +22,8 @@ public class ProfileDTO {
     private String phone;
     private ProfileStatus status;
     private ProfileRole role;
+    private String  smsCode;
+    private LocalDateTime smsTimeOfSending;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private Boolean visible;

@@ -12,6 +12,12 @@ public class AdviceController {
     public ResponseEntity<?> handle(AppBadException appBadException) {
         return ResponseEntity.badRequest().body(appBadException.getMessage());
     }
+
+    @ExceptionHandler(value = {ForbiddenException.class})
+    public ResponseEntity<?> handle(ForbiddenException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
+
     @ExceptionHandler(JwtException.class)
     private ResponseEntity<?> handle(JwtException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -19,6 +25,11 @@ public class AdviceController {
 
     @ExceptionHandler(value = {RuntimeException.class})
     public ResponseEntity<?> handle(RuntimeException appBadException) {
+        return ResponseEntity.badRequest().body(appBadException.getMessage());
+    }
+
+    @ExceptionHandler(value = {Throwable.class})
+    public ResponseEntity<?> handle(Throwable appBadException) {
         return ResponseEntity.badRequest().body(appBadException.getMessage());
     }
 

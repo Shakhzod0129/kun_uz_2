@@ -1,40 +1,25 @@
-### create article type
-POST http://localhost:8081/category/adm
-Content-Type: application/json
+### get by email
+GET http://localhost:8081/email/adm/byEmail?email=allayarovshahzodbekz@gmail.com
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
-{
-  "nameUz": "Jahon",
-  "nameRu": "мир",
-  "nameEn": "World",
-  "orderNumber": 1
-}
-
-### get by id
-GET http://localhost:8081/category/adm/1
+### get by date
+GET http://localhost:8081/email/adm/byDate?date=
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
-### update by id
-PUT http://localhost:8081/category/adm/1
-Content-Type: application/json
+### pagination email
+GET http://localhost:8081/email/adm/pagination
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
-{
-  "nameUz": "Termiz",
-  "nameRu": "Термез",
-  "nameEn": "Termez",
-  "orderNumber": 2,
-  "visible": true
-}
 
-### delete by id
-DELETE http://localhost:8081/category/adm/1
+
+### get by phone
+GET http://localhost:8081/sms/adm/byPhone?phone=999999
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
-### pagination
-GET http://localhost:8081/category/adm/pagination?page=1&size=2
+### get by date
+GET http://localhost:8081/sms/adm/byDate?date=2024-02-02
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
-### get by lang
-GET http://localhost:8081/category/byLang?id=1&keyLang=en
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ
+### pagination sms
+GET http://localhost:8081/sms/adm/pagination?page=1&size=1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ

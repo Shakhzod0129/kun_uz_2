@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import uz.kun.entity.ProfileEntity;
 import org.springframework.data.repository.CrudRepository;
 import uz.kun.entity.RegionEntity;
+import uz.kun.enums.ProfileStatus;
 
 import java.util.Optional;
 
@@ -25,4 +26,20 @@ public interface ProfileRepository extends CrudRepository<ProfileEntity, Integer
     @Modifying
     @Query("update ProfileEntity set visible=false where id=:id")
     Integer delete(@Param("id") Integer id);
+
+    Optional<ProfileEntity> findBySmsCode(String sms);
+    Optional<ProfileEntity> findByPhone(String phone);
+
+
+
+    @Transactional
+    @Modifying
+    @Query("update ProfileEntity set status='ACTIVE' WHERE phone=?1")
+    Integer register(String phone);
+
+    @Transactional
+    @Modifying
+    @Query("Update ProfileEntity  set status =?2 where id = ?1")
+    void updateStatus(Integer id, ProfileStatus active);
+
 }

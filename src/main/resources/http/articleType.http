@@ -1,9 +1,7 @@
 ### create article type
-POST http://localhost:8081/articleType
+POST http://localhost:8081/articleType/adm
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
-
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
 {
   "nameUz":"fsggsdf",
@@ -13,13 +11,13 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQ
 }
 
 ### get by id
-GET http://localhost:8081/articleType/1
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+GET http://localhost:8081/articleType/adm/1
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 ### update by id
-PUT http://localhost:8081/articleType/1
+PUT http://localhost:8081/articleType/adm/1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 {
   "nameUz":"oimuz",
@@ -30,11 +28,11 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoi
 }
 
 ### delete by id
-DELETE http://localhost:8081/articleType/1
+DELETE http://localhost:8081/articleType/adm/1
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ
 
 ### pagination
-GET http://localhost:8081/articleType/pagination?page=1&size=2
+GET http://localhost:8081/articleType/adm/pagination?page=1&size=2
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ
 
 ### get by lang

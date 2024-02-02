@@ -1,10 +1,14 @@
 package uz.kun.service;
 
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uz.kun.dto.AuthDTO;
+import uz.kun.dto.JWTDTO;
 import uz.kun.dto.ProfileDTO;
+import uz.kun.dto.RegistrationDTO;
 import uz.kun.entity.ProfileEntity;
+import uz.kun.enums.ProfileRole;
+import uz.kun.enums.ProfileStatus;
 import uz.kun.exception.AppBadException;
 import uz.kun.repository.ProfileRepository;
 import uz.kun.utils.JWTUtil;
@@ -15,14 +19,16 @@ import java.util.Optional;
 @Service
 public class AuthService {
     @Autowired
-    protected ProfileRepository profileRepository;
+    private ProfileRepository profileRepository;
 
-    public ProfileDTO auth(AuthDTO profile) { // login
-        Optional<ProfileEntity> optional = profileRepository.findByEmailAndPassword(profile.getEmail(),
-                MDUtil.encode(profile.getPassword()));
-
+    public ProfileDTO auth(ProfileDTO auth){
+        Optional<ProfileEntity> optional =
+                profileRepository.findByEmailAndPassword(auth.getEmail(), MDUtil.encode(auth.getPassword()));
         if (optional.isEmpty()) {
             throw new AppBadException("Email or Password is wrong");
+        }
+        if (!optional.get().getStatus().equals(ProfileStatus.ACTIVE)) {
+            throw new AppBadException("Profile not active");
         }
 
         ProfileEntity entity = optional.get();
@@ -31,11 +37,13 @@ public class AuthService {
         dto.setName(entity.getName());
         dto.setSurname(entity.getSurname());
         dto.setRole(entity.getRole());
-        dto.setPhone(entity.getPhone());
-        dto.setJwt(JWTUtil.encode(entity.getId(), (entity.getRole())));
+        dto.setJwt(JWTUtil.encode(entity.getId(),entity.getRole()));
 
         return dto;
     }
+
+
+
 
 }
 

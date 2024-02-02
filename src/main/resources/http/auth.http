@@ -2,11 +2,48 @@
 POST localhost:8081/auth/login
 Content-Type: application/json
 
-//{
-//  "email": "admin@mail.ru",
-//  "password": "12345"
-//}
 {
-  "email": "messi@gmail.com",
-  "password": "123"
+  "email": "admin@mail.ru",
+  "password": "12345"
+}
+//{
+//  "email": "messi@gmail.com",
+//  "password": "123"
+//}
+
+
+### Registration
+POST http://localhost:8081/auth/registration
+Content-Type: application/json
+
+{
+  "name": "shaha",
+  "surname": "allayarov",
+  "phone": "77777",
+  "password": "7777",
+  "email": "allayarovshahzodbekz@gmail.com"
+}
+
+
+###
+POST http://localhost:8081/auth/registrWithSms
+Content-Type: application/json
+
+{
+  "name": "shaha",
+  "surname": "allayarov",
+  "phone": "999999",
+  "password": "7777",
+  "email": "aashahzodbekz@gmail.com"
+}
+
+
+###
+POST http://localhost:8081/auth/verification/sms
+Content-Type: application/json
+
+{
+  "phone": "999999",
+  "smsCode": "4738"
+
 }

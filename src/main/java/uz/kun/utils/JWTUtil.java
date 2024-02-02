@@ -11,6 +11,7 @@ import java.util.List;
 
 public class JWTUtil {
     private static final int tokenLiveTime = 1000 * 3600 * 24; // 1-day
+    private static final int emailTokenLiveTime = 1000 * 3600; // 1-hour
     private static final String secretKey = "mazgi123mazgidasdasdkja1dkjas7dksdakjshdkahsdkjahsdkahs7kjhaskjdh2skjdhadasdasg7fgdfgdfd";
 
     public static String encode(Integer profileId, ProfileRole role) {
@@ -30,6 +31,9 @@ public class JWTUtil {
         return jwtBuilder.compact();
     }
 
+
+
+
     public static JWTDTO decode(String token) {
         SignatureAlgorithm sa = SignatureAlgorithm.HS512;
         SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), sa.getJcaName());
@@ -42,9 +46,25 @@ public class JWTUtil {
 
         Integer id = (Integer) claims.get("id");
         String role = (String) claims.get("role");
-        ProfileRole profileRole = ProfileRole.valueOf(role);
+        if (role != null) {
+            ProfileRole profileRole = ProfileRole.valueOf(role);
+            return new JWTDTO(id, profileRole);
+        }
+        return new JWTDTO(id);
+    }
 
-        return new JWTDTO(id, profileRole);
+
+
+    public static String encodeForEmail(Integer profileId) {
+        JwtBuilder jwtBuilder = Jwts.builder();
+        jwtBuilder.issuedAt(new Date());
+        SignatureAlgorithm sa = SignatureAlgorithm.HS512;
+        SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), sa.getJcaName());
+        jwtBuilder.signWith(secretKeySpec);
+        jwtBuilder.claim("id", profileId);
+        jwtBuilder.expiration(new Date(System.currentTimeMillis() + (emailTokenLiveTime)));
+        jwtBuilder.issuer("KunUzTest");
+        return jwtBuilder.compact();
     }
 
 }

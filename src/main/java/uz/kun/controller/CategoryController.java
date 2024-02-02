@@ -1,5 +1,6 @@
 package uz.kun.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import uz.kun.dto.CategoryDTO;
 import uz.kun.dto.JWTDTO;
 import uz.kun.enums.ProfileRole;
 import uz.kun.service.CategoryService;
+import uz.kun.utils.HttpRequestUtil;
 import uz.kun.utils.JWTUtil;
 
 import java.util.LinkedList;
@@ -22,65 +24,45 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("")
+    @PostMapping("/adm")
     public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO dto,
-                                              @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                              HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.create(dto));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/adm/{id}")
     public ResponseEntity<CategoryDTO> getById(@PathVariable Integer id,
-                                               @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                               HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/adm/{id}")
     public ResponseEntity<Boolean> update(@PathVariable Integer id,
                                           @RequestBody CategoryDTO dto,
-                                          @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                          HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.updateById(id,dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/adm/{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable Integer id,
-                                              @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                              HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.deleteById(id));
     }
 
-    @GetMapping("/pagination")
+    @GetMapping("/adm/pagination")
     public ResponseEntity<PageImpl<CategoryDTO>> pagination(@RequestParam Integer page,
                                                                @RequestParam Integer size,
-                                                            @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+                                                            HttpServletRequest request){
+        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(categoryService.pagination(page,size));
     }
 
     @GetMapping("/byLang")
-    public ResponseEntity<List<CategoryDTO>> getByLanguage(@RequestParam String keyLang,
-                                                           @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    public ResponseEntity<List<CategoryDTO>> getByLanguage(@RequestParam String keyLang){
         return ResponseEntity.ok(categoryService.getByLang(keyLang));
     }
 }

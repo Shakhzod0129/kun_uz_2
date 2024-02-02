@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,14 @@ public class ProfileEntity extends BaseEntity{
     private String surname;
     @Column(unique = true, nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String phone;
     @Column(nullable = false)
     private String password;
+    @Column (name = "sms_code")
+    private String smsCode;
+    @Column(name = "sms_code_time")
+    private LocalDateTime smsCodeTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

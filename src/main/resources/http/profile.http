@@ -2,9 +2,9 @@
 GET http://localhost:8081/init/admin
 
 ### create profile by admin
-POST http://localhost:8081/profile
+POST http://localhost:8081/profile/adm
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
 
 {
   "name": "Messi",
@@ -14,10 +14,15 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQ
   "phone": "123",
   "role":"MODERATOR"
 }
+
+### get by id
+GET http://localhost:8081/profile/adm/2
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
+
 ### update only by admin
-PUT http://localhost:8081/profile/4
+PUT http://localhost:8081/profile/adm/2
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 {
 "name": "Shakhzod",
@@ -29,17 +34,16 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQ
 }
 
 ### pagination
-GET http://localhost:8081/profile/pagination?size=3&page=1
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
-
+GET http://localhost:8081/profile/adm/pagination?size=3&page=1
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 ### delete by admin
 DELETE http://localhost:8081/profile/2
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 ### update detail (ANY)
-PUT http://localhost:8081/profile/update/2
+PUT http://localhost:8081/profile/adm/update
 Content-Type:application/json
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNzcyMDAsImlkIjoyLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA2NDYzNjAwLCJpc3MiOiJLdW5VelRlc3QifQ.dLErzCpkJcRTwvmC1KEMLsgG1HzMRNtpRatBS7EJ7ohjjAW5AFQZ6yrXSdvCa8cjh3Z10n8vpwfz9u0MmfcTlA
+Authorization:Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjcyMjYsImlkIjoyLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA2NTEzNjI2LCJpc3MiOiJLdW5VelRlc3QifQ.vuW9WBR73ayvQLFFzJiLdEvKesLoPzUJXOOHITGYIPF3uBwvHjxjwm5dLwcELiKKVVoer7wXBuPIPd7rfoGKFA
 
 {
   "name": "Ronaldobek",
@@ -52,7 +56,7 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNzcyMDAsImlkIjoyLCJyb2xlIjoiT
 ### filter by Admin
 GET http://localhost:8081/profile/filter
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 
 {
