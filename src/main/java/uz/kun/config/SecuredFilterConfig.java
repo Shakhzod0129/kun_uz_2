@@ -35,6 +35,9 @@ public class SecuredFilterConfig {
         bean.addUrlPatterns("/sms/adm");
         bean.addUrlPatterns("/sms/adm/*");
         bean.addUrlPatterns("/sms/adm/**");
+        bean.addUrlPatterns("/attach/adm");
+        bean.addUrlPatterns("/attach/adm/*");
+        bean.addUrlPatterns("/attach/adm/**");
 
         return bean;
     }

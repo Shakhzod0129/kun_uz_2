@@ -1,0 +1,29 @@
+### Create
+ POST http://localhost:8081/attach/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="test_kun_uz.jpg"
+#Content-Disposition: form-data; name="file"; filename="test 02.mp4"
+
+< C:\Users\allay\OneDrive\Рабочий стол\img\test_kun_uz.jpg
+#< C:\Users\allay\OneDrive\Рабочий стол\video\test 02.mp4
+
+### get image
+GET http://localhost:8081/attach/open/08ea066b-8fe8-49d3-8adf-8a75d880e7e9.mp4
+
+
+
+### get general
+GET http://localhost:8081/attach/open_general/08ea066b-8fe8-49d3-8adf-8a75d880e7e9.mp4
+
+###
+GET http://localhost:8081/attach/open/test_kun_uz.jpg
+
+
+### download
+GET http://localhost:8081/attach/download/e62db810-bdd5-42fd-88ad-ab31bcc65403.jpg
+
+### delete
+DELETE http://localhost:8081/attach/adm/delete/e90da7d6-aa36-42e1-8798-cb62f77f5758.jpg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwNzMyNzYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDcxNTk2NzYsImlzcyI6Ikt1blV6VGVzdCJ9.LvWLSV92N1vL1ksCvknCIPQtH0i3PJIWPRWrDQ3FS9SWt0w6_8QF6NdA3A8jNTvPUorYODSN_i3m4Za17irOsg

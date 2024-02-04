@@ -94,8 +94,13 @@ public class EmailHistoryService {
                 "  display: inline-block;\" href=\"http://localhost:8081/auth/verification/email/%s\n" +
                 "\">Click</a>\n" +
                 "<br>\n";
+        EmailSendHistoryEntity emailSendHistoryEntity=new EmailSendHistoryEntity();
 
-//        entity.setSmsCode(text);
+        emailSendHistoryEntity.setMessage(text);
+        emailSendHistoryEntity.setCreatedDate(LocalDateTime.now());
+        emailSendHistoryEntity.setEmail(entity.getEmail());
+
+        emailSendHistoryRepository.save(emailSendHistoryEntity);
         profileRepository.save(entity);
         String jwt = JWTUtil.encodeForEmail(entity.getId());
 
@@ -110,7 +115,7 @@ public class EmailHistoryService {
     public Boolean emailVerification(String jwt) {
         try {
             JWTDTO jwtDTO = JWTUtil.decode(jwt);
-            EmailSendHistoryEntity emailSendHistoryEntity=new EmailSendHistoryEntity();
+
             Optional<ProfileEntity> optional = profileRepository.findById(jwtDTO.getId());
             if (!optional.isPresent()) {
                 throw new AppBadException("Profile not found");
@@ -121,12 +126,6 @@ public class EmailHistoryService {
             }
             profileRepository.updateStatus(entity.getId(), ProfileStatus.ACTIVE);
 
-
-            emailSendHistoryEntity.setMessage(entity.getSmsCode());
-            emailSendHistoryEntity.setCreatedDate(LocalDateTime.now());
-            emailSendHistoryEntity.setEmail(entity.getEmail());
-
-            emailSendHistoryRepository.save(emailSendHistoryEntity);
         } catch (JwtException e) {
             throw new AppBadException("Please tyre again.");
         }
@@ -135,7 +134,7 @@ public class EmailHistoryService {
 
     public List<EmailHistoryDTO> getByEmail(String email){
 
-        List<EmailSendHistoryEntity> list = emailSendHistoryRepository.getByEmail(email);
+        List<EmailSendHistoryEntity> list = emailSendHistoryRepository.getByEmail(email );
         if(list.isEmpty()){
             throw new AppBadException("History not found with this phone!!!");
         }
