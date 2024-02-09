@@ -105,6 +105,7 @@ public class AttachService {
     public byte[] loadImage(String attachId) { // dasdasd-dasdasda-asdasda-asdasd.jpg
         String id = attachId.substring(0, attachId.lastIndexOf("."));
         AttachEntity entity = get(id);
+
         byte[] data;
         try {
             Path file = Paths.get("uploads/" + entity.getPath() + "/" + attachId);
@@ -118,9 +119,26 @@ public class AttachService {
 
     }
 
+    public byte[] loadImage2(String attachId) { // dasdasd-dasdasda-asdasda-asdasd.jpg
+        String id = attachId.substring(0, attachId.lastIndexOf("."));
+        AttachEntity entity = get(id);
+
+        byte[] data;
+        try {
+            Path file = Paths.get("uploads/" + entity.getOriginalName() + "/" + attachId);
+            data = Files.readAllBytes(file);
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new byte[0];
+
+    }
+
     AttachEntity get(String id) {
         return attachRepository.findById(id).orElseThrow(() -> {
-            throw new AppBadException("File not found");
+            throw new AppBadException("Image File not found");
         });
     }
 

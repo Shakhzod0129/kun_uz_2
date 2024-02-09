@@ -59,9 +59,9 @@ public class SmsHistoryService {
         if(!(dto.getPassword().length()>3)){
             throw new AppBadException("Invalid password");
         }
-        if(!(dto.getPhone().length()>4)){
-            throw new AppBadException("Invalid phone");
-        }
+//        if(!(dto.getPhone().length()>4)){
+//            throw new AppBadException("Invalid phone");
+//        }
         StringBuilder smsCode= new StringBuilder();
         for (int i = 0; i < 4; i++) {
             smsCode.append(random.nextInt(1,9));

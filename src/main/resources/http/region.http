@@ -1,10 +1,10 @@
 ### create article type
-POST http://localhost:8081/region/adm
+POST http://localhost:8080/region/adm
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODA4NjksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDkxODA4NjksImlzcyI6Ikt1blV6VGVzdCJ9.Fv-_67bMMru-IXm_0Wqig6x-X2kRP8aPZpRWeJ1WomsYMScPhqREy_XLQl5ow74jZb_vsmV1FY4ZloVBOlpK3Q
 
 {
-  "nameUz": "Toshkent",
+  "nameUz": "Termiz",
   "nameRu": "Ташкент",
   "nameEn": "Tashkent",
   "orderNumber": 1

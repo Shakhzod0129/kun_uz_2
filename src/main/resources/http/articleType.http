@@ -1,12 +1,12 @@
 ### create article type
-POST http://localhost:8081/articleType/adm
+POST http://localhost:8080/articleType/adm
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4NTg1MTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY5NDQ5MTEsImlzcyI6Ikt1blV6VGVzdCJ9.c07EScAKFag-Mu25tKFdc-6oOarpepjg9x0SuzSwOrhRlbLEu4MTiJG6DSeDTGyJ8pjjk5JULD6WneY1QmXlTQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcyNDAxMTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDczMjY1MTEsImlzcyI6Ikt1blV6VGVzdCJ9.-SJgZ-zDxLHAoLlipFr7maaeoHeMUr_O08S6cB5cLvJLhr4PcmDnlz7f7A7mHeiQdBac5SpJhW3kRtGs2_U5Dw
 
 {
-  "nameUz":"fsggsdf",
-  "nameEn": "oiuru1",
-  "nameRu": "oiuen1",
+  "nameUz":"Gandbol",
+  "nameEn": "article",
+  "nameRu": "statya",
   "orderNumber": 1
 }
 

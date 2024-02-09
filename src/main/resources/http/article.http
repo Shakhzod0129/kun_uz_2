@@ -1,0 +1,90 @@
+### create
+POST http://localhost:8080/article/moderator
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODExMzcsImlkIjo1LCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA5MTgxMTM3LCJpc3MiOiJLdW5VelRlc3QifQ._h_tBoR3_yah1fIJpV4SgqU3h_7s3asgCePB5HFzy9Tq4NXsTES-rlAvwgJTfLVtsVYKQ8LiX4B_ht34t9blEA
+
+{
+  "title": "World",
+  "description": "World",
+  "content": "World",
+  "categoryId": 1,
+  "regionId": 2,
+  "articleType": [2],
+  "photoId": "d1d0d620-e6eb-4a8f-9913-981bd526da33",
+  "tagName": [3]
+}
+
+### update by moderator
+PUT http://localhost:8080/article/moderator/38d284b0-b0ac-4790-8592-69cff93ed3e0
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODExMzcsImlkIjo1LCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA5MTgxMTM3LCJpc3MiOiJLdW5VelRlc3QifQ._h_tBoR3_yah1fIJpV4SgqU3h_7s3asgCePB5HFzy9Tq4NXsTES-rlAvwgJTfLVtsVYKQ8LiX4B_ht34t9blEA
+
+{
+  "title": "World",
+  "description": "World",
+  "content": "World",
+  "categoryId": 1,
+  "regionId": 1,
+  "articleType": [2],
+  "viewCount": 15 ,
+  "imgId": "d1d0d620-e6eb-4a8f-9913-981bd526da33"
+}
+
+
+### delete by moderator
+DELETE http://localhost:8080/article/moderator/e0c4afa1-6344-423d-b73a-4629cfe9b1ae
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcyNDAyMjIsImlkIjo1LCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3MzI2NjIyLCJpc3MiOiJLdW5VelRlc3QifQ.RvHkAz-hMqLF96eKRlr640lREWWs7fIc6pfpJeHvbDY8Cb1oWpmQoLDpNoqcfFwNOefVrU1BQc8Eb4P3mGrLeA
+
+### change status by id by Publisher
+PUT http://localhost:8080/article/moderator/changeStatus?id=c28a14ed-e3cf-493c-aaf4-93171f3a3b9c&status=PUBLISHED
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcyNzgyMzUsImlkIjoyLCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNzA3MzY0NjM1LCJpc3MiOiJLdW5VelRlc3QifQ.jBHqVvsfoB4swV9SNjycG6HzpMKtZSod-n0jqEWdxCYr_nlB-pR1aghzupW1z7nUplCr-sTaWLFHIo2Zeyngsg
+
+### last 5 by type
+GET http://localhost:8080/article/last5ByType?typeId=2
+
+###
+GET http://localhost:8080/article/last3ByType?typeId=2
+
+### last 8
+GET http://localhost:8080/article/last8ByType
+Content-Type: application/json
+
+{
+  "articleIdList": ["548e99e9-b42b-4295-98fb-fcce733e7a47","208f290e-21e9-42a7-88bc-edf65dd009f5","bf52e409-bcff-46f2-b708-55ceb7b7fda8"]
+}
+
+### last 4 by type and article ids
+GET http://localhost:8080/article/last4ByType?typeId=2&articleId=fdc0e0cf-71ac-4548-b223-3c43a4f00a8d
+
+
+### most read 4 article
+GET http://localhost:8080/article/mostRead4Article
+
+### Last 4 article by tag
+GET http://localhost:8080/article/last4ByTagId?tagId=1
+
+
+### last 5 by typeID and RegionID
+GET http://localhost:8080/article/getByTypeIdAndRegionId?typeId=2&regionId=1
+
+
+### pagination by region id
+GET http://localhost:8080/article/paginationByRegionId?page=1&size=12&regionId=2
+
+### last 5 by category id
+GET http://localhost:8080/article/last5ByCategoryId?categoryID=1
+
+### last 5 by category id
+GET http://localhost:8080/article/paginationByCategoryId?page=1&size=1&categoryId=2
+
+### get by lang
+GET http://localhost:8080/article/byLang?language=uz&articleId=c25e8c27-059f-4adb-b15f-d183ead14a66
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 package uz.kun.dto;
 
 
+import jakarta.validation.constraints.Email;
 import uz.kun.enums.ProfileRole;
 import uz.kun.enums.ProfileStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,6 +18,7 @@ public class ProfileDTO {
     private Integer id;
     private String name;
     private String surname;
+
     private String email;
     private String password;
     private String phone;

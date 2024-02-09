@@ -1,15 +1,15 @@
 ### Login
-POST localhost:8081/auth/login
+POST localhost:8080/auth/login
 Content-Type: application/json
 
-{
-  "email": "admin@mail.ru",
-  "password": "12345"
-}
 //{
-//  "email": "messi@gmail.com",
-//  "password": "123"
+//  "email": "admin@mail.ru",
+//  "password": "12345"
 //}
+{
+  "email": "RONALDO1@gmail.com",
+  "password": "123"
+}
 
 
 ### Registration

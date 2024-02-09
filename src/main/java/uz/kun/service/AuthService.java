@@ -3,6 +3,7 @@ package uz.kun.service;
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.kun.dto.AuthDTO;
 import uz.kun.dto.JWTDTO;
 import uz.kun.dto.ProfileDTO;
 import uz.kun.dto.RegistrationDTO;
@@ -21,7 +22,7 @@ public class AuthService {
     @Autowired
     private ProfileRepository profileRepository;
 
-    public ProfileDTO auth(ProfileDTO auth){
+    public ProfileDTO auth(AuthDTO auth){
         Optional<ProfileEntity> optional =
                 profileRepository.findByEmailAndPassword(auth.getEmail(), MDUtil.encode(auth.getPassword()));
         if (optional.isEmpty()) {

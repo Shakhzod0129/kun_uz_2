@@ -5,6 +5,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import uz.kun.dto.ArticleTypeDTO;
 import uz.kun.entity.ArticleTypeEntity;
+import uz.kun.entity.CategoryEntity;
 import uz.kun.exception.AppBadException;
 import uz.kun.repository.ArticleTypeRepository;
 
@@ -137,5 +138,8 @@ public class ArticleTypeService implements CrudService<ArticleTypeDTO, Integer> 
         return articleTypeDTO;
     }
 
+    public ArticleTypeEntity get(Integer id) {
+        return articleTypeRepository.findById(id).orElseThrow(() -> new AppBadException("Category not found"));
 
+    }
 }

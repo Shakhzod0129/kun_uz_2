@@ -62,7 +62,8 @@ public class AttachController {
 
     @GetMapping("/download/{attachId}")
     public ResponseEntity<byte[]> download(@PathVariable("attachId") String attachId) {
-        byte[] fileData = attachService.loadImage(attachId);
+        byte[] fileData = attachService.loadImage2(attachId);
+
 
         if (fileData != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -81,6 +82,8 @@ public class AttachController {
         Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(attachService.delete(attachId));
     }
+
+
 
 
 

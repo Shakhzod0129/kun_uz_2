@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class JWTUtil {
-    private static final int tokenLiveTime = 1000 * 3600 * 24; // 1-day
+    private static final int tokenLiveTime = 1000 * 3600 * 500; // 1-day
     private static final int emailTokenLiveTime = 1000 * 3600; // 1-hour
     private static final String secretKey = "mazgi123mazgidasdasdkja1dkjas7dksdakjshdkahsdkjahsdkahs7kjhaskjdh2skjdhadasdasg7fgdfgdfd";
 

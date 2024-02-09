@@ -1,5 +1,5 @@
 ### Create
- POST http://localhost:8081/attach/upload
+ POST http://localhost:8080/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -22,7 +22,7 @@ GET http://localhost:8081/attach/open/test_kun_uz.jpg
 
 
 ### download
-GET http://localhost:8081/attach/download/e62db810-bdd5-42fd-88ad-ab31bcc65403.jpg
+GET http://localhost:8081/attach/download/59f9105d-1548-4be2-b9cb-9cf3513516c1.jpg
 
 ### delete
 DELETE http://localhost:8081/attach/adm/delete/e90da7d6-aa36-42e1-8798-cb62f77f5758.jpg

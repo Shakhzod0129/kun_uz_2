@@ -65,5 +65,7 @@ RegionController {
     public ResponseEntity<List<RegionDTO>> getByLanguage(@RequestParam(value = "language",defaultValue = "uz")
                                                              AppLanguage language){
         return ResponseEntity.ok(regionService.getByLang(language));
+
+
     }
 }
