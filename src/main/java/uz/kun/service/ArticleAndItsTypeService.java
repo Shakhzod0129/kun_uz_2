@@ -1,5 +1,6 @@
 package uz.kun.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.kun.entity.ArticleAndItsTypeEntity;
@@ -9,6 +10,8 @@ import uz.kun.repository.ArticleTypeRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleAndItsTypeService {
@@ -31,38 +34,33 @@ public class ArticleAndItsTypeService {
         selectArticleTypeRepository.save(entity);
     }
 
-    public void merge(String articleId, List<Integer> typesIdList) {
-        // create
-        // [] old
-        // [1,2,3,4,5] new
-        List<ArticleAndItsTypeEntity> entities = selectArticleTypeRepository.findByArticleId(articleId);
-//
-        int count = 0;
-        for (ArticleAndItsTypeEntity entity : entities) {
-            if (!typesIdList.contains(entity.getTypesId())) {
-                selectArticleTypeRepository.deleteById(entity.getId());
-                count++;
+    @Transactional
+    public void merge(String articleId, List<Integer> newTypeIds) {
+        // Eskilar ro'yhati
+        List<ArticleAndItsTypeEntity> oldTypes = selectArticleTypeRepository.findByArticleId(articleId);
+        Set<Integer> oldTypeIds = oldTypes.stream()
+                .map(ArticleAndItsTypeEntity::getTypesId)
+                .collect(Collectors.toSet());
+
+        // Eskilar ro'yhatidan chiqarilgan yangi typelar
+        List<Integer> toDelete = oldTypeIds.stream()
+                .filter(id -> !newTypeIds.contains(id))
+                .collect(Collectors.toList());
+
+        // Yangi typelarni qo'shish
+        for (Integer typeId : newTypeIds) {
+            if (!oldTypeIds.contains(typeId)) {
+                ArticleAndItsTypeEntity newTypeEntity = new ArticleAndItsTypeEntity();
+                newTypeEntity.setArticleId(articleId);
+                newTypeEntity.setTypesId(typeId);
+                selectArticleTypeRepository.save(newTypeEntity);
             }
         }
 
-        if (count == 0 && entities.size() == typesIdList.size()) {
-            return;
-        }
-        // update
-        //[1,2,3,4,5] - old
-        //[7,5] - new
-        for (Integer typesId : typesIdList) {
-            List<ArticleAndItsTypeEntity> articleTypesList = selectArticleTypeRepository.findByTypesIdOrderByCreatedDateDesc(typesId);
-            if (articleTypesList.isEmpty()) {
-                ArticleAndItsTypeEntity entity = new ArticleAndItsTypeEntity();
-                entity.setArticleId(articleId);
-                entity.setTypesId(typesId);
-                selectArticleTypeRepository.save(entity);
-            }
+        // Eskilar ro'yhatidan o'chirish
+        for (Integer typeId : toDelete) {
+            selectArticleTypeRepository.deleteByArticleIdAndTypesId(articleId, typeId);
         }
     }
 }
 
-
-//agar berilgan maqola update qilinganda uning article type update qilinsa misol uchun oldin u 1,2,5 typelarda
-// bolgan endi u 5,6,7 typlarda update qilindi uning 1,2 typlari uchirilsin qolgani set qilinsin

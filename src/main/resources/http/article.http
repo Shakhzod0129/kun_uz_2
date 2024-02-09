@@ -15,7 +15,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODExMzcsImlkIjo1LCJyb
 }
 
 ### update by moderator
-PUT http://localhost:8080/article/moderator/38d284b0-b0ac-4790-8592-69cff93ed3e0
+PUT http://localhost:8080/article/moderator/02505de7-6ace-453b-b66e-c19d783d3019
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODExMzcsImlkIjo1LCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA5MTgxMTM3LCJpc3MiOiJLdW5VelRlc3QifQ._h_tBoR3_yah1fIJpV4SgqU3h_7s3asgCePB5HFzy9Tq4NXsTES-rlAvwgJTfLVtsVYKQ8LiX4B_ht34t9blEA
 
@@ -25,7 +25,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODExMzcsImlkIjo1LCJyb
   "content": "World",
   "categoryId": 1,
   "regionId": 1,
-  "articleType": [2],
+  "articleType": [1,5,3,4],
   "viewCount": 15 ,
   "imgId": "d1d0d620-e6eb-4a8f-9913-981bd526da33"
 }

@@ -5,10 +5,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import uz.kun.entity.ArticleAndItsTypeEntity;
-import uz.kun.entity.ArticleEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ArticleItsTypeRepository extends CrudRepository<ArticleAndItsTypeEntity,Integer> {
 
@@ -25,5 +23,5 @@ public interface ArticleItsTypeRepository extends CrudRepository<ArticleAndItsTy
     List<ArticleAndItsTypeEntity> findTop4ByTypesIdAndArticleIdNotOrderByCreatedDateDesc(Integer typeId, String articleId);
 
 
-
+    void deleteByArticleIdAndTypesId(String articleId, Integer typeId);
 }
