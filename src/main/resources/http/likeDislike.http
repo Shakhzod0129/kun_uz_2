@@ -1,0 +1,9 @@
+### create
+POST http://localhost:8080/likesAndDislikes/create
+Content-Type: application/json
+
+{
+  "articleID": "5f107575-a30e-42e5-b937-bdef1f19a174",
+  "profileId": 2,
+  "status": "LIKE"
+}

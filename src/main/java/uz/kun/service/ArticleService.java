@@ -7,10 +7,7 @@ import uz.kun.dto.ArticleDTO;
 import uz.kun.dto.CategoryDTO;
 import uz.kun.dto.RegionDTO;
 import uz.kun.dto.extra.*;
-import uz.kun.entity.ArticleAndItsTypeEntity;
-import uz.kun.entity.ArticleAndTagNameEntity;
-import uz.kun.entity.ArticleEntity;
-import uz.kun.entity.TagNameEntity;
+import uz.kun.entity.*;
 import uz.kun.enums.AppLanguage;
 import uz.kun.enums.ArticleStatus;
 import uz.kun.exception.AppBadException;
@@ -42,6 +39,14 @@ public class ArticleService {
     private TagNameRepository tagNameRepository;
     @Autowired
     private TagNameService tagNameService;
+    @Autowired
+    private RegionService regionService;
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private AttachService  attachService;
+
 
     //(title,description,content,image_id, region_id,category_id, articleType(array))
     public ArticleDTO create(CreatedArticleDto dto, Integer profileId) {
@@ -73,13 +78,17 @@ public class ArticleService {
     public ArticleDTO update(String articleId, ArticleDTO dto, Integer profileId) {
         ArticleEntity entity = get(articleId);
 
+        RegionEntity regionEntity = regionService.get(dto.getRegionId());
+        CategoryEntity categoryEntity = categoryService.get(dto.getCategoryId());
+        AttachEntity attachEntity = attachService.get(dto.getImgId());
+
         entity.setTitleUz(dto.getTitle());
         entity.setContentUz(dto.getContent());
         entity.setDescriptionUz(dto.getDescription());
-        entity.setCategoryId(dto.getCategoryId());
-        entity.setRegionid(dto.getRegionId());
+        entity.setCategoryId(categoryEntity.getId());
+        entity.setRegionid(regionEntity.getId());
         entity.setModeratorId(profileId);
-        entity.setImageId(dto.getImgId());
+        entity.setImageId(attachEntity.getId());
         entity.setStatus(dto.getStatus());
         entity.setViewCount(dto.getViewCount());
         entity.setSharedCount(dto.getSharedCount());

@@ -7,19 +7,23 @@ Content-Type: application/json
 //  "password": "12345"
 //}
 {
-  "email": "RONALDO1@gmail.com",
-  "password": "123"
+  "password": "7777",
+  "email": "allayarovshahzodbekz@gmail.com"
 }
+//{
+//  "email": "RONALDO1@gmail.com",
+//  "password": "123"
+//}
 
 
 ### Registration
-POST http://localhost:8081/auth/registration
+POST http://localhost:8080/auth/registration
 Content-Type: application/json
 
 {
   "name": "shaha",
   "surname": "allayarov",
-  "phone": "77777",
+  "phone": "17777",
   "password": "7777",
   "email": "allayarovshahzodbekz@gmail.com"
 }

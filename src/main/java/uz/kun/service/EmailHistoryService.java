@@ -91,7 +91,7 @@ public class EmailHistoryService {
                 "  padding: 14px 25px;\n" +
                 "  text-align: center;\n" +
                 "  text-decoration: none;\n" +
-                "  display: inline-block;\" href=\"http://localhost:8081/auth/verification/email/%s\n" +
+                "  display: inline-block;\" href=\"http://localhost:8080/auth/verification/email/%s\n" +
                 "\">Click</a>\n" +
                 "<br>\n";
         EmailSendHistoryEntity emailSendHistoryEntity=new EmailSendHistoryEntity();

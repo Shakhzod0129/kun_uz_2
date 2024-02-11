@@ -107,4 +107,9 @@ public class ArticleEntity {
     @OneToMany(mappedBy = "article")
     private List<ArticleAndTagNameEntity> articleAndTagNameEntityList;
 
+    @Column(name = "like_count")
+    private Long likeCount=0l;
+    @Column(name = "dislike_count")
+    private Long dislikeCount=0l;
+
 }

@@ -41,7 +41,7 @@ DELETE http://localhost:8081/profile/2
 Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MTI4NTcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1OTkyNTcsImlzcyI6Ikt1blV6VGVzdCJ9.7SJOl_Kc0UWoRcVwG5d97CYAliW8cxzSemRDHo3UzIs4OPmBlJcVDL_3FJh8cgCFUY9xFQFrognjwe9Daz8HBA
 
 ### update detail (ANY)
-PUT http://localhost:8081/profile/adm/update
+PUT http://localhost:8080/profile/update
 Content-Type:application/json
 Authorization:Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjcyMjYsImlkIjoyLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA2NTEzNjI2LCJpc3MiOiJLdW5VelRlc3QifQ.vuW9WBR73ayvQLFFzJiLdEvKesLoPzUJXOOHITGYIPF3uBwvHjxjwm5dLwcELiKKVVoer7wXBuPIPd7rfoGKFA
 

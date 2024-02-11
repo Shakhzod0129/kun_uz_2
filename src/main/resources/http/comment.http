@@ -1,0 +1,17 @@
+### cereate
+POST http://localhost:8080/comment/create
+Content-Type: application/json
+
+{
+  "profileId": 1,
+  "content": "hello👌",
+  "articleID": "02505de7-6ace-453b-b66e-c19d783d3019"
+}
+
+
+
+
+
+
+
+

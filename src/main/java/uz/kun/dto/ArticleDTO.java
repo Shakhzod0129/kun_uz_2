@@ -43,5 +43,7 @@ public class ArticleDTO {
     private LocalDateTime publishedDate;
     private Boolean visible;
     private List<Long> tagName;
+    private Long likeCount;
+    private Long dislikeCount;
 
 }

@@ -18,6 +18,10 @@ public class CreatedArticleDto {
     private String contentUz;
     private String contentRu;
     private String contentEn;
+    private String title;
+    private String description;
+    private String content;
+
     private Integer regionId;
     private Integer categoryId;
     private List<Integer> articleType; //

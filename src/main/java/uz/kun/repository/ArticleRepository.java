@@ -30,7 +30,7 @@ public interface ArticleRepository extends CrudRepository<ArticleEntity,Integer>
 
     List<ArticleEntity> findTop4ByOrderByViewCountDesc();
 
-    @Query("SELECT a FROM ArticleEntity a WHERE a.status = 'PUBLISHED' and a.id = :articleId ORDER BY a.createdDate DESC")
+    @Query("SELECT a FROM ArticleEntity a WHERE a.status = 'PUBLISHED' and a.visible=false and a.id = :articleId ORDER BY a.createdDate DESC")
     ArticleEntity findArticleById(@Param("articleId") String articleId);
 
     @Query("SELECT a FROM ArticleEntity a WHERE a.status = 'PUBLISHED' and a.regionid = :regionId ORDER BY a.createdDate DESC")

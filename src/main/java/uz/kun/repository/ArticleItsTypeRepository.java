@@ -8,7 +8,7 @@ import uz.kun.entity.ArticleAndItsTypeEntity;
 
 import java.util.List;
 
-public interface ArticleItsTypeRepository extends CrudRepository<ArticleAndItsTypeEntity,Integer> {
+public interface ArticleItsTypeRepository extends CrudRepository<ArticleAndItsTypeEntity, Integer> {
 
     @Transactional
     @Modifying
@@ -18,10 +18,11 @@ public interface ArticleItsTypeRepository extends CrudRepository<ArticleAndItsTy
     List<ArticleAndItsTypeEntity> findByArticleId(String ArticleId);
 
     List<ArticleAndItsTypeEntity> findTop5ByTypesIdOrderByCreatedDateDesc(Integer ArticleId);
+
     List<ArticleAndItsTypeEntity> findByTypesIdOrderByCreatedDateDesc(Integer ArticleId);
 
     List<ArticleAndItsTypeEntity> findTop4ByTypesIdAndArticleIdNotOrderByCreatedDateDesc(Integer typeId, String articleId);
 
-
+    @Transactional
     void deleteByArticleIdAndTypesId(String articleId, Integer typeId);
 }
