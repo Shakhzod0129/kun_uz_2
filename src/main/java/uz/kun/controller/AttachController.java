@@ -1,17 +1,16 @@
 package uz.kun.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import uz.kun.config.CustomUserDetails;
 import uz.kun.dto.AttachDTO;
-import uz.kun.enums.ProfileRole;
 import uz.kun.service.AttachService;
-import uz.kun.utils.HttpRequestUtil;
+import uz.kun.utils.SpringSecurityUtil;
 
 @RestController
 @RequestMapping("/attach")
@@ -60,26 +59,32 @@ public class AttachController {
         return null;
     }
 
-    @GetMapping("/download/{attachId}")
-    public ResponseEntity<byte[]> download(@PathVariable("attachId") String attachId) {
-        byte[] fileData = attachService.loadImage2(attachId);
+//    @GetMapping("/download/{attachId}")
+//    public ResponseEntity<byte[]> download(@PathVariable("attachId") String attachId) {
+//        byte[] fileData = attachService.loadImage2(attachId);
+//
+//
+//        if (fileData != null) {
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//            headers.setContentDispositionFormData("attachment", attachId);
+//
+//            return new ResponseEntity<>(fileData, headers, HttpStatus.OK);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
-
-        if (fileData != null) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            headers.setContentDispositionFormData("attachment", attachId);
-
-            return new ResponseEntity<>(fileData, headers, HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/download/{fineName}")
+    public ResponseEntity<Resource> download(@PathVariable("fineName") String fileName) {
+        return attachService.download(fileName);
     }
 
+
     @DeleteMapping("/adm/delete/{attachId}")
-    public ResponseEntity<Boolean> delete(@PathVariable("attachId") String attachId,
-                                          HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Boolean> delete(@PathVariable("attachId") String attachId){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(attachService.delete(attachId));
     }
 

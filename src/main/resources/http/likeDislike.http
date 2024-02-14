@@ -1,9 +1,26 @@
 ### create
-POST http://localhost:8080/likesAndDislikes/create
+POST http://localhost:8080/likesAndDislikes/any/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
+
 
 {
   "articleID": "5f107575-a30e-42e5-b937-bdef1f19a174",
+  "status": "LIKE"
+}
+
+
+### create comment like and dislike
+POST http://localhost:8080/commentLike/create
+Content-Type: application/json
+
+{
+  "commentId":1,
   "profileId": 2,
   "status": "LIKE"
 }
+
+
+
+
+

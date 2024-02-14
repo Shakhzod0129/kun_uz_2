@@ -1,10 +1,11 @@
 package uz.kun.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import uz.kun.config.CustomUserDetails;
 import uz.kun.dto.ArticleDTO;
 import uz.kun.dto.extra.ArticleFullInfoDTO;
 import uz.kun.dto.extra.ArticleIdDTO;
@@ -12,9 +13,8 @@ import uz.kun.dto.extra.ArticleShortInfoDTO;
 import uz.kun.dto.extra.CreatedArticleDto;
 import uz.kun.enums.AppLanguage;
 import uz.kun.enums.ArticleStatus;
-import uz.kun.enums.ProfileRole;
 import uz.kun.service.ArticleService;
-import uz.kun.utils.HttpRequestUtil;
+import uz.kun.utils.SpringSecurityUtil;
 
 import java.util.List;
 
@@ -26,42 +26,35 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("/moderator")
-    public ResponseEntity<ArticleDTO> create(@RequestBody CreatedArticleDto dto,
-                                             HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleService.create(dto,profileId));
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
+    public ResponseEntity<ArticleDTO> create(@RequestBody CreatedArticleDto dto){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
+        return ResponseEntity.ok(articleService.create(dto,currentUser.getId()));
 
     }
 
     @PutMapping("/moderator/{articleId}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<ArticleDTO> update(@PathVariable String articleId,
-                                             @RequestBody ArticleDTO dto,
-                                             HttpServletRequest request){
-        if (articleId  == null) {
-            throw new IllegalArgumentException("ID must not be null");
-        }
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.MODERATOR);
+                                             @RequestBody ArticleDTO dto){
 
-        return ResponseEntity.ok(articleService.update(articleId,dto,profileId));
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
+        return ResponseEntity.ok(articleService.update(articleId,dto,currentUser.getId()));
 
     }
 
     @DeleteMapping("/moderator/{articleId}")
-    public ResponseEntity<Boolean> delete(@PathVariable String articleId,
-                                          HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.MODERATOR);
+    @PreAuthorize("hasRole('MODERATOR')")
+    public ResponseEntity<Boolean> delete(@PathVariable String articleId){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleService.delete(articleId));
     }
 
     @PutMapping("/moderator/changeStatus")
+    @PreAuthorize("hasRole('MODERATOR')")
     public ResponseEntity<Boolean> changeStatus(@RequestParam String id,
-                                          @RequestParam ArticleStatus status,
-                                          HttpServletRequest request){
-        if (id  == null) {
-            throw new IllegalArgumentException("ID must not be null");
-        }
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.PUBLISHER);
-
+                                          @RequestParam ArticleStatus status){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleService.changeStatus(id,status));
 
     }

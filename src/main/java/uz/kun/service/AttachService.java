@@ -2,6 +2,10 @@ package uz.kun.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.kun.dto.AttachDTO;
@@ -11,6 +15,7 @@ import uz.kun.repository.AttachRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -209,5 +214,22 @@ public class AttachService {
             throw new RuntimeException(e);
         }
         return true;
+    }
+
+    public ResponseEntity download(String attachId) {
+        try {
+            String id = attachId.substring(0, attachId.lastIndexOf("."));
+            AttachEntity entity = get(id);
+            Path file = Paths.get("uploads/" + entity.getPath() + "/" + attachId);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + entity.getOriginalName() + "\"").body(resource);
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
     }
 }

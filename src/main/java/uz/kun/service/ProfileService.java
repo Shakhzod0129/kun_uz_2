@@ -1,25 +1,21 @@
 package uz.kun.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
 import uz.kun.dto.PaginationResultDTO;
 import uz.kun.dto.ProfileDTO;
 import uz.kun.dto.ProfileFilterDto;
-import uz.kun.dto.RegionDTO;
 import uz.kun.entity.ProfileEntity;
-import uz.kun.entity.RegionEntity;
-import uz.kun.enums.AppLanguage;
 import uz.kun.enums.ProfileStatus;
 import uz.kun.exception.AppBadException;
 import uz.kun.repository.ProfileFilterRepository;
 import uz.kun.repository.ProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import uz.kun.utils.MDUtil;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProfileService implements CrudService<ProfileDTO, Integer> {

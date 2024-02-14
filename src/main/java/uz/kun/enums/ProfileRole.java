@@ -1,5 +1,5 @@
 package uz.kun.enums;
 
 public enum ProfileRole {
-    USER, ADMIN,PUBLISHER,MODERATOR;
+    ROLE_USER, ROLE_ADMIN, ROLE_PUBLISHER, ROLE_MODERATOR;
 }

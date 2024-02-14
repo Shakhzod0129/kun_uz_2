@@ -73,7 +73,7 @@ public class SmsHistoryService {
         entity.setPhone(dto.getPhone());
         entity.setEmail(dto.getEmail());
         entity.setPassword(MDUtil.encode(dto.getPassword()));
-        entity.setRole(ProfileRole.USER);
+        entity.setRole(ProfileRole.ROLE_USER);
         entity.setSmsCode(String.valueOf(smsCode));
         entity.setSmsCodeTime(LocalDateTime.now());
         entity.setStatus(ProfileStatus.REGISTRATION);

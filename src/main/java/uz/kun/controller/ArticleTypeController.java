@@ -1,17 +1,14 @@
 package uz.kun.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import uz.kun.config.CustomUserDetails;
 import uz.kun.dto.ArticleTypeDTO;
-import uz.kun.dto.JWTDTO;
-import uz.kun.enums.ProfileRole;
 import uz.kun.service.ArticleTypeService;
-import uz.kun.utils.HttpRequestUtil;
-import uz.kun.utils.JWTUtil;
+import uz.kun.utils.SpringSecurityUtil;
 
 import java.util.List;
 
@@ -23,49 +20,46 @@ public class ArticleTypeController {
     private ArticleTypeService articleTypeService;
 
     @PostMapping("/adm")
-    public ResponseEntity<ArticleTypeDTO>  create(@RequestBody ArticleTypeDTO dto,
-                                                  HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<ArticleTypeDTO>  create(@RequestBody ArticleTypeDTO dto){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.create(dto));
     }
 
     @GetMapping("/adm/{id}")
-    public ResponseEntity<ArticleTypeDTO> getById(@PathVariable Integer id,
-                                                  HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<ArticleTypeDTO> getById(@PathVariable Integer id){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.findById(id));
     }
 
     @PutMapping("/adm/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Boolean> update(@PathVariable Integer id,
-                                          @RequestBody ArticleTypeDTO dto,
-                                          HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+                                          @RequestBody ArticleTypeDTO dto){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.updateById(id,dto));
     }
 
     @DeleteMapping("/adm/{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable Integer id,
-                                              HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Boolean> deleteById(@PathVariable Integer id){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.deleteById(id));
     }
 
     @GetMapping("/adm/pagination")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<PageImpl<ArticleTypeDTO>> pagination(@RequestParam Integer page,
-                                                               @RequestParam Integer size,
-                                                               HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+                                                               @RequestParam Integer size){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.pagination(page,size));
     }
 
-    @GetMapping("/byLang")
-    public ResponseEntity<List<ArticleTypeDTO>> getByLanguage(@RequestParam String keyLang,
-                                                              @RequestHeader(value = "Authorization") String jwt){
-        JWTDTO jwtdto= JWTUtil.decode(jwt);
-        if(!jwtdto.getRole().equals(ProfileRole.ADMIN)){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    @GetMapping("/adm/byLang")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<List<ArticleTypeDTO>> getByLanguage(@RequestParam String keyLang){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleTypeService.getByLang(keyLang));
     }
 }

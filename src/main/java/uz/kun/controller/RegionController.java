@@ -3,16 +3,16 @@ package uz.kun.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import uz.kun.dto.JWTDTO;
+import uz.kun.config.CustomUserDetails;
 import uz.kun.dto.RegionDTO;
 import uz.kun.enums.AppLanguage;
 import uz.kun.enums.ProfileRole;
 import uz.kun.service.RegionService;
 import uz.kun.utils.HttpRequestUtil;
-import uz.kun.utils.JWTUtil;
+import uz.kun.utils.SpringSecurityUtil;
 
 import java.util.List;
 
@@ -25,39 +25,39 @@ RegionController {
     private RegionService regionService;
 
     @PostMapping("/adm")
-    public ResponseEntity<RegionDTO>  create(@RequestBody RegionDTO dto,
-                                             HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<RegionDTO>  create(@RequestBody RegionDTO dto){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.create(dto));
     }
 
     @GetMapping("/adm/{id}")
-    public ResponseEntity<RegionDTO> getById(@PathVariable Integer id,
-                                             HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<RegionDTO> getById(@PathVariable Integer id){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.findById(id));
     }
 
     @PutMapping("/adm/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Boolean> update(@PathVariable Integer id,
-                                          @RequestBody RegionDTO dto,
-                                          HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+                                          @RequestBody RegionDTO dto){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.updateById(id,dto));
     }
 
     @DeleteMapping("/adm/{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable Integer id,
-                                              HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Boolean> deleteById(@PathVariable Integer id){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.deleteById(id));
     }
 
     @GetMapping("/adm/pagination")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<PageImpl<RegionDTO>> pagination(@RequestParam Integer page,
-                                                          @RequestParam Integer size,
-                                                          HttpServletRequest request){
-        Integer profileId = HttpRequestUtil.getProfileId(request, ProfileRole.ADMIN);
+                                                          @RequestParam Integer size){
+        CustomUserDetails currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(regionService.pagination(page,size));
     }
 
@@ -66,6 +66,6 @@ RegionController {
                                                              AppLanguage language){
         return ResponseEntity.ok(regionService.getByLang(language));
 
-
     }
+
 }

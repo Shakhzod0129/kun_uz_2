@@ -12,6 +12,7 @@ public class ArticleAndTagNameEntity extends BaseEntity {
 
     @Column(name = "article_id")
     private String articleId;
+
     @ManyToOne
     @JoinColumn(name = "article_id",insertable = false,updatable = false)
     private ArticleEntity article;

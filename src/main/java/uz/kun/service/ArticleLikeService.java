@@ -9,7 +9,6 @@ import uz.kun.entity.ProfileEntity;
 import uz.kun.enums.Status;
 import uz.kun.repository.ArticleLikeRepository;
 import uz.kun.repository.ArticleRepository;
-import uz.kun.repository.ProfileRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -26,16 +25,14 @@ public class ArticleLikeService {
     private ProfileService profileService;
     @Autowired
     private ArticleRepository articleRepository;
-    @Autowired
-    private ProfileRepository profileRepository;
     private static final int increment = 1;
     private static final int decrement = -1;
 
 
-    public ArticleLikeDTO create(ArticleLikeDTO dto) {
+    public ArticleLikeDTO create(ArticleLikeDTO dto, Integer profileId) {
 
         ArticleEntity articleEntity = articleService.get(dto.getArticleID());
-        ProfileEntity profileEntity = profileService.get(dto.getProfileId());
+        ProfileEntity profileEntity = profileService.get(profileId);
         Status newStatus = dto.getStatus();
 
         ArticleLikeEntity entity = new ArticleLikeEntity();

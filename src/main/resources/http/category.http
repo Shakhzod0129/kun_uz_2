@@ -1,7 +1,7 @@
 ### create article type
 POST http://localhost:8080/category/adm
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcyNDAxMTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDczMjY1MTEsImlzcyI6Ikt1blV6VGVzdCJ9.-SJgZ-zDxLHAoLlipFr7maaeoHeMUr_O08S6cB5cLvJLhr4PcmDnlz7f7A7mHeiQdBac5SpJhW3kRtGs2_U5Dw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
 {
   "nameUz": "Jahon",

@@ -38,7 +38,7 @@ public class AuthService {
         dto.setName(entity.getName());
         dto.setSurname(entity.getSurname());
         dto.setRole(entity.getRole());
-        dto.setJwt(JWTUtil.encode(entity.getId(),entity.getRole()));
+        dto.setJwt(JWTUtil.encode(entity.getEmail(),entity.getRole()));
 
         return dto;
     }

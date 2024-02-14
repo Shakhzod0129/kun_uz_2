@@ -15,6 +15,15 @@ public class ArticleShortInfoDTO {
     private String title;
     private String description;
     private String content;
+    private String titleUz;
+    private String titleRu;
+    private String titleEn;
+    private String descriptionUz;
+    private String descriptionRu;
+    private String descriptionEn;
+    private String contentUz;
+    private String contentRu;
+    private String contentEn;
     private Integer sharedCount;
     private Integer viewCount;
     private String imgId;

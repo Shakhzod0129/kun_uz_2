@@ -1,14 +1,35 @@
 ### cereate
-POST http://localhost:8080/comment/create
+POST http://localhost:8080/comment
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
 {
-  "profileId": 1,
-  "content": "hello👌",
-  "articleID": "02505de7-6ace-453b-b66e-c19d783d3019"
+  "content": "you are the best best best👌",
+  "articleID": "6e6e42fb-ff08-4e88-ad58-1c76435473ad"
 }
 
+### update
+PUT http://localhost:8080/comment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
+{
+  "articleID": "6e6e42fb-ff08-4e88-ad58-1c76435473ad",
+  "content": "changed2",
+  "id": 2
+}
+
+### delete
+DELETE http://localhost:8080/comment/adm/6
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODA4NjksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDkxODA4NjksImlzcyI6Ikt1blV6VGVzdCJ9.Fv-_67bMMru-IXm_0Wqig6x-X2kRP8aPZpRWeJ1WomsYMScPhqREy_XLQl5ow74jZb_vsmV1FY4ZloVBOlpK3Q
+
+### get all
+GET http://localhost:8080/comment/adm?articleId=02505de7-6ace-453b-b66e-c19d783d3019
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODA4NjksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDkxODA4NjksImlzcyI6Ikt1blV6VGVzdCJ9.Fv-_67bMMru-IXm_0Wqig6x-X2kRP8aPZpRWeJ1WomsYMScPhqREy_XLQl5ow74jZb_vsmV1FY4ZloVBOlpK3Q
+
+### pagination
+GET http://localhost:8080/comment/adm/pagination?page=1&size=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
 
 

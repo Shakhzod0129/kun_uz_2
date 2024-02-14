@@ -3,22 +3,16 @@ package uz.kun.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import uz.kun.dto.extra.ArticleShortInfoDTO;
-import uz.kun.dto.extra.ProfileShortInfoDto;
+import uz.kun.enums.Status;
 
 import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommentDTO {
+public class CommentLikeDTO {
     private Long id;
-    private String content;
-    private String articleID;
+    private Status status;
+    private Long commentId;
     private Integer profileId;
-    private Long replyId;
     private LocalDateTime createdDate;
-    private ProfileShortInfoDto profile;
-    private ArticleShortInfoDTO article;
-
 }

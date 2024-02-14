@@ -1,8 +1,7 @@
 ### create article type
 POST http://localhost:8080/region/adm
 Content-Type: application/json
-#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODA4NjksImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDkxODA4NjksImlzcyI6Ikt1blV6VGVzdCJ9.Fv-_67bMMru-IXm_0Wqig6x-X2kRP8aPZpRWeJ1WomsYMScPhqREy_XLQl5ow74jZb_vsmV1FY4ZloVBOlpK3Q
-Authorization: Basic dXNlcjo4NmIxMmFjYi0wY2NlLTQzOTktYWI1Mi1kMTU1YjM0MWE3ZDk=
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
 {
   "nameUz": "Termiz",
@@ -41,5 +40,5 @@ Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQ
 
 
 ### get by lang
-GET http://localhost:8081/region/byLang?language=ru
+GET http://localhost:8080/region/byLang?language=ru
 #Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYzNjAwMDUsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY0NDY0MDUsImlzcyI6Ikt1blV6VGVzdCJ9.qOuAn5LRAItUKngoYX11iuB-kGikna_j6zitHrntPQxXdBQyx7vbrH2v7NlVSaEUj-I48iysxu_jt2EUgtpYIg

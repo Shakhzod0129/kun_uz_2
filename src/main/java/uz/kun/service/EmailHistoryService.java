@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import uz.kun.dto.*;
 import uz.kun.entity.EmailSendHistoryEntity;
 import uz.kun.entity.ProfileEntity;
-import uz.kun.entity.EmailSendHistoryEntity;
 import uz.kun.enums.ProfileRole;
 import uz.kun.enums.ProfileStatus;
 import uz.kun.exception.AppBadException;
@@ -26,7 +25,6 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class EmailHistoryService {
@@ -81,7 +79,7 @@ public class EmailHistoryService {
         entity.setEmail(dto.getEmail());
         entity.setPassword(MDUtil.encode(dto.getPassword()));
         entity.setStatus(ProfileStatus.REGISTRATION);
-        entity.setRole(ProfileRole.USER);
+        entity.setRole(ProfileRole.ROLE_USER);
         entity.setPhone(dto.getPhone());
         //send verification code (email/sms)
         String text = "<h1 style=\"text-align: center\">Hello %s</h1>\n" +

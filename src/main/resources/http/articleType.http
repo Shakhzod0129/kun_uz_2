@@ -1,7 +1,7 @@
 ### create article type
 POST http://localhost:8080/articleType/adm
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcyNDAxMTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDczMjY1MTEsImlzcyI6Ikt1blV6VGVzdCJ9.-SJgZ-zDxLHAoLlipFr7maaeoHeMUr_O08S6cB5cLvJLhr4PcmDnlz7f7A7mHeiQdBac5SpJhW3kRtGs2_U5Dw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc4OTM4MTQsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA5NjkzODE0LCJpc3MiOiJLdW5VelRlc3QifQ.x9c3ztXJMuTjbpcFSlXIPtAIKaCg7foPfIX00C-PosozQrVTCMoGil6gA5RWcB-F0pnw3pBLjT9oYl1TCZCT2A
 
 {
   "nameUz":"Gandbol",
@@ -36,5 +36,5 @@ GET http://localhost:8081/articleType/adm/pagination?page=1&size=2
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ
 
 ### get by lang
-GET http://localhost:8081/articleType/byLang?keyLang=uz
+GET http://localhost:8081/articleType/adm/byLang?keyLang=uz
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNjExODAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNDc1ODAsImlzcyI6Ikt1blV6VGVzdCJ9.RfO1C27pPe9oNxcmX3nQj-1WGJVVJuT8jXdKAYsacCl5khxs3oqA4fvdSFPgtufgPq6aB6odQHiPDz-1UmfADQ

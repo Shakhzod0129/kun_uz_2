@@ -39,4 +39,9 @@ public class CommentEntity {
     @Column(name = "created_date")
     private LocalDateTime createdDate;
     // Qolgan xususiyatlar, getter va setterlar...
+
+    @Column(name = "like_count")
+    private Long likeCount=0l;
+    @Column(name = "dislike_count")
+    private Long dislikeCount=0l;
 }

@@ -6,14 +6,14 @@ Content-Type: application/json
 //  "email": "admin@mail.ru",
 //  "password": "12345"
 //}
-{
-  "password": "7777",
-  "email": "allayarovshahzodbekz@gmail.com"
-}
 //{
-//  "email": "RONALDO1@gmail.com",
-//  "password": "123"
+//  "password": "7777",
+//  "email": "allayarovshahzodbekz@gmail.com"
 //}
+{
+  "email": "RONALDO1@gmail.com",
+  "password": "123"
+}
 
 
 ### Registration
